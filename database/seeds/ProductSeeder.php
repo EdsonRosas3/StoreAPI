@@ -30,6 +30,12 @@ class ProductSeeder extends Seeder
                 'stock'=>10,
                 'category_id'=>2
             ],
+            [
+                'name'=>'ventana',
+                'price'=>25.3,
+                'stock'=>10,
+                'category_id'=>1
+            ],
         ];
         foreach($items as $key => $value){
             Product::create($value);
