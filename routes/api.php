@@ -13,40 +13,51 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
+Route::group(['middleware' => 'auth:api'], function(){
+    Route::post('details', 'UserController@details');
+    Route::get('users','UserController@index');
+    Route::post('users','UserController@store');
+    Route::get('users/{id}','UserController@show');
+    Route::put('users/{id}','UserController@update');
+    Route::delete('users/{id}','UserController@destroy');
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::post('bills','BillController@store');
+    Route::put('bills/{id}','BillController@update');
+    Route::delete('bills/{id}','BillController@destroy');
+
+    Route::post('categories','CategoryController@store');
+    Route::put('categories/{id}','CategoryController@update');
+    Route::delete('categories/{id}','CategoryController@destroy');
+
+    Route::post('details','DetailController@store');
+    Route::put('details/{id}','DetailController@update');
+    Route::delete('details/{id}','DetailController@destroy');
+
+    Route::post('products','ProductController@store');
+    Route::put('products/{id}','ProductController@update');
+    Route::delete('products/{id}','ProductController@destroy');
 });
 
-Route::get('users','UserController@index');
-Route::post('users','UserController@store');
-Route::get('users/{id}','UserController@show');
-Route::put('users/{id}','UserController@update');
-Route::delete('users/{id}','UserController@destroy');
+
+
 
 Route::get('bills','BillController@index');
-Route::post('bills','BillController@store');
 Route::get('bills/{id}','BillController@show');
-Route::put('bills/{id}','BillController@update');
-Route::delete('bills/{id}','BillController@destroy');
+
 
 Route::get('categories','CategoryController@index');
-Route::post('categories','CategoryController@store');
 Route::get('categories/{id}','CategoryController@show');
-Route::put('categories/{id}','CategoryController@update');
-Route::delete('categories/{id}','CategoryController@destroy');
+
 
 Route::get('details','DetailController@index');
-Route::post('details','DetailController@store');
 Route::get('details/{id}','DetailController@show');
-Route::put('details/{id}','DetailController@update');
-Route::delete('details/{id}','DetailController@destroy');
+
 
 Route::get('products','ProductController@index');
-Route::post('products','ProductController@store');
 Route::get('products/{id}','ProductController@show');
-Route::put('products/{id}','ProductController@update');
-Route::delete('products/{id}','ProductController@destroy');
+
 
 
 
